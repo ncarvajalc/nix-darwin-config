@@ -8,8 +8,8 @@
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
-            url = "github:nix-community/home-manager";
-            inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -50,7 +50,15 @@
       };
 
       system.defaults = {
-        dock.autohide = true;
+        dock = {
+          autohide = true;
+          show-recents = false;
+        };
+        finder = {
+          AppleShowAllExtensions = true;
+          ShowPathbar = true;
+          FXEnableExtensionChangeWarning = false;
+        };
         NSGlobalDomain.KeyRepeat = 2;
       };
 
@@ -77,9 +85,6 @@
       nixpkgs.config.allowUnfree = true;
     };
 
-    users.users.nicolascarvajal = {
-      home = "/Users/nicolascarvajal";
-    };
     homeconfig = {pkgs, ...}: {
       # this is internal compatibility configuration 
       # for home-manager, don't change this!
@@ -88,13 +93,6 @@
       programs.home-manager.enable = true;
 
       home.packages = with pkgs; [];
-
-      programs.zsh = {
-        enable = true;
-        shellAliases = {
-          ls = "ls --color";
-        };
-      };
 
       programs.git = {
         enable = true;
@@ -110,14 +108,23 @@
       modules = [ 
         configuration
         mac-app-util.darwinModules.default
-        nix-homebrew.darwinModules.nix-homebrew
-        {
+        nix-homebrew.darwinModules.nix-homebrew {
           nix-homebrew = {
             enable = true;
             # For Apple Silicon
             enableRosetta = true;
             # User owner of homebrew packages
             user = "nicolascarvajal";
+          };
+        }
+        home-manager.darwinModules.home-manager {
+          users.users.nicolascarvajal = {
+            home = "/Users/nicolascarvajal";
+          };
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.nicolascarvajal = homeconfig;
           };
         }
       ];
