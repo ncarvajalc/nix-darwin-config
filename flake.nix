@@ -21,6 +21,7 @@
       environment.systemPackages =
         [ pkgs.vim
           pkgs.mkalias
+          pkgs.fzf
         ];
       
       homebrew = {
@@ -29,18 +30,22 @@
           "mas"
         ];
         casks = [
+          # Desktop Apps
           "arc"
-          "rectangle"
           "anydesk"
           "logi-options+"
-          "maccy"
-          "alt-tab"
-          "raycast"
           "chatgpt"
           "visual-studio-code"
           "cursor"
           "obsidian"
           "spotify"
+          "docker"
+          "orbstack"
+          # Utilities
+          "rectangle"
+          "maccy"
+          "alt-tab"
+          "raycast"
         ];
         masApps ={
           "WhatsApp" = 310633997;
@@ -96,6 +101,13 @@
           ShutDownDisabled = true;
           ShutDownDisabledWhileLoggedIn = true;
         };
+      };
+
+      #Zsh config
+      programs.zsh = {
+        enable = true;
+        enableFzfCompletion = true;
+        enableFzfHistory = true;
       };
 
       # Auto upgrade nix package and the deamon service
