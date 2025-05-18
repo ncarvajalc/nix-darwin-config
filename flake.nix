@@ -53,13 +53,48 @@
         dock = {
           autohide = true;
           show-recents = false;
+          expose-group-apps = true;
+          showhidden = true;
+          tilesize = 60;
+
+          persistent-apps = [
+          "/System/Applications/Mail.app"
+          "/Applications/Arc.app"
+          "/Applications/Nix Trampolines/Visual Studio Code.app"
+          "/Applications/Cursor.app"
+          "/Applications/Nix Trampolines/Obsidian.app"
+          "/System/Applications/Utilities/Terminal.app"
+          "/Applications/WhatsApp.app"
+          ];
         };
         finder = {
           AppleShowAllExtensions = true;
           ShowPathbar = true;
+          ShowStatusBar = true;
           FXEnableExtensionChangeWarning = false;
+          FXPreferredViewStyle = "clmv";
+          _FXSortFoldersFirst = true;
+          _FXSortFoldersFirstOnDesktop = true;
         };
-        NSGlobalDomain.KeyRepeat = 2;
+        NSGlobalDomain = {
+          KeyRepeat = 2;
+          NSAutomaticQuoteSubstitutionEnabled = false;
+          "com.apple.sound.beep.feedback" = 1;
+        };
+        WindowManager = {
+          EnableTiledWindowMargins = false; 
+        };
+        controlcenter = {
+          NowPlaying = false;
+          Sound = true;
+        };
+        loginwindow = {
+          PowerOffDisabledWhileLoggedIn = true;
+          RestartDisabled = true;
+          RestartDisabledWhileLoggedIn = true;
+          ShutDownDisabled = true;
+          ShutDownDisabledWhileLoggedIn = true;
+        };
       };
 
       # Auto upgrade nix package and the deamon service
