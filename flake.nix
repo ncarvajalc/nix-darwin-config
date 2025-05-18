@@ -157,6 +157,24 @@
         userName = "Nicolás Carvajal";
         userEmail = "n.carvajalc@uniandes.edu.co";
       };
+
+      programs.zsh = {
+        enable = true;
+
+        history = {
+          path = "/Users/nicolascarvajal/.zsh_history";
+          size = 100000;
+          save = 100000;
+          extended = true;
+          share = true;
+        };
+
+        initExtra = ''
+          export HISTTIMEFORMAT="[%F %T] "
+          setopt HIST_FIND_NO_DUPS
+          setopt HIST_IGNORE_ALL_DUPS
+        '';
+      };
     };
   in
   {
