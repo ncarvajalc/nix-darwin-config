@@ -21,8 +21,6 @@
       environment.systemPackages =
         [ pkgs.vim
           pkgs.mkalias
-          pkgs.vscode
-          pkgs.obsidian
         ];
       
       homebrew = {
@@ -39,7 +37,10 @@
           "alt-tab"
           "raycast"
           "chatgpt"
+          "visual-studio-code"
           "cursor"
+          "obsidian"
+          "spotify"
         ];
         masApps ={
           "WhatsApp" = 310633997;
@@ -60,9 +61,9 @@
           persistent-apps = [
           "/System/Applications/Mail.app"
           "/Applications/Arc.app"
-          "/Applications/Nix Trampolines/Visual Studio Code.app"
+          "/Applications/Visual Studio Code.app"
           "/Applications/Cursor.app"
-          "/Applications/Nix Trampolines/Obsidian.app"
+          "/Applications/Obsidian.app"
           "/System/Applications/Utilities/Terminal.app"
           "/Applications/WhatsApp.app"
           ];
