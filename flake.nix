@@ -116,6 +116,9 @@
         pgadmin-up ="docker run -d --name pgadmin --restart always -p 80:80 -e \"PGADMIN_DEFAULT_EMAIL=n.carvajalc@uniandes.edu.co\" -e \"PGADMIN_DEFAULT_PASSWORD=admin\" -v pgadmin_data:/var/lib/pgadmin dpage/pgadmin4";
       };
 
+      # Networking
+      networking.wakeOnLan.enable = true;
+
       # Auto upgrade nix package and the deamon service
       services.nix-daemon.enable = true;
 
