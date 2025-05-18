@@ -7,6 +7,10 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    home-manager = {
+            url = "github:nix-community/home-manager";
+            inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-homebrew }:
@@ -71,6 +75,32 @@
       
       # Allow unfree packages instalation
       nixpkgs.config.allowUnfree = true;
+    };
+
+    users.users.nicolascarvajal = {
+      home = "/Users/nicolascarvajal";
+    };
+    homeconfig = {pkgs, ...}: {
+      # this is internal compatibility configuration 
+      # for home-manager, don't change this!
+      home.stateVersion = "24.11";
+      # Let home-manager install and manage itself.
+      programs.home-manager.enable = true;
+
+      home.packages = with pkgs; [];
+
+      programs.zsh = {
+        enable = true;
+        shellAliases = {
+          ls = "ls --color";
+        };
+      };
+
+      programs.git = {
+        enable = true;
+        userName = "Nicolás Carvajal";
+        userEmail = "n.carvajalc@uniandes.edu.co";
+      };
     };
   in
   {
