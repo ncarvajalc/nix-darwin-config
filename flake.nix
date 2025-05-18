@@ -41,6 +41,7 @@
           "spotify"
           "docker"
           "orbstack"
+          "google-chrome"
           # Utilities
           "rectangle"
           "maccy"
