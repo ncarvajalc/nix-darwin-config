@@ -109,6 +109,7 @@
         enable = true;
         enableFzfCompletion = true;
         enableFzfHistory = true;
+        enableSyntaxHighlighting = true;
       };
 
       # Shell aliases 
