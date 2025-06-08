@@ -2,13 +2,13 @@
   description = "Example nix-darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -48,7 +48,7 @@
           "microsoft-teams"
           "zoom"
           "slack"
-          "vmware-fusion"
+          "virtualbox"
           # Fonts
           "font-montserrat"
           # Utilities
@@ -132,8 +132,8 @@
       # Networking
       networking.wakeOnLan.enable = true;
 
-      # Auto upgrade nix package and the deamon service
-      services.nix-daemon.enable = true;
+      # System primary user.
+      system.primaryUser = "nicolascarvajal";
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -181,7 +181,7 @@
           share = true;
         };
 
-        initExtra = ''
+        initContent = ''
           export HISTTIMEFORMAT="[%F %T] "
           setopt HIST_FIND_NO_DUPS
           setopt HIST_IGNORE_ALL_DUPS
@@ -196,8 +196,8 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Mac-mini-de-Nicolas
-    darwinConfigurations."Mac-mini-de-Nicolas" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#mac-mini
+    darwinConfigurations."mac-mini" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration
         mac-app-util.darwinModules.default
