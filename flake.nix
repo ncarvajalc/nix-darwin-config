@@ -28,6 +28,9 @@
         enable = true;
         brews = [
           "mas"
+          "pyenv"
+          "libpq"
+          "nvm"
         ];
         casks = [
           # Desktop Apps
@@ -42,6 +45,12 @@
           "docker"
           "orbstack"
           "google-chrome"
+          "microsoft-teams"
+          "zoom"
+          "slack"
+          "vmware-fusion"
+          # Fonts
+          "font-montserrat"
           # Utilities
           "rectangle"
           "maccy"
@@ -50,6 +59,9 @@
         ];
         masApps ={
           "WhatsApp" = 310633997;
+          "Microsoft Excel" = 462058435;
+          "Microsoft PowerPoint" = 462062816;
+          "Microsoft Word" = 462054704;
         };
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
@@ -173,6 +185,11 @@
           export HISTTIMEFORMAT="[%F %T] "
           setopt HIST_FIND_NO_DUPS
           setopt HIST_IGNORE_ALL_DUPS
+          export PYENV_ROOT="$HOME/.pyenv"
+          [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+          eval "$(pyenv init - zsh)"
+          export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+          source $(brew --prefix nvm)/nvm.sh
         '';
       };
     };
