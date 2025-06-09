@@ -117,6 +117,9 @@
         };
       };
 
+      # Enable watchIdAuth for sudo
+      security.pam.services.sudo_local.watchIdAuth = true;
+
       #Zsh config
       programs.zsh = {
         enable = true;
