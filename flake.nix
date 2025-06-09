@@ -63,6 +63,7 @@
           "alt-tab"
           "raycast"
           "amazon-q"
+          "karabiner-elements"
         ];
         masApps ={
           "WhatsApp" = 310633997;
