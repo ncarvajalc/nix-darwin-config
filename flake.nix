@@ -36,6 +36,7 @@
           "pyenv"
           "libpq"
           "nvm"
+          "pandoc"
         ];
         casks = [
           # Desktop Apps
