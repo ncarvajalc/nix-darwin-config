@@ -1,20 +1,25 @@
 {
   description = "Example nix-darwin system flake";
-
+  
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-homebrew }:
   let
+    user = "nicolascarvajal"; # Change this to your username
+    email = "n.carvajalc@uniandes.edu.co"; # Change this to your email
+    name = "Nicolás Carvajal"; # Change this to your name
+    home = "/Users/${user}"; # Change this to your home directory
+    
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
@@ -31,6 +36,8 @@
           "pyenv"
           "libpq"
           "nvm"
+          "pandoc"
+          "ffmpeg"
         ];
         casks = [
           # Desktop Apps
@@ -48,7 +55,8 @@
           "microsoft-teams"
           "zoom"
           "slack"
-          "vmware-fusion"
+          "virtualbox"
+          "claude"
           # Fonts
           "font-montserrat"
           # Utilities
@@ -57,14 +65,17 @@
           "alt-tab"
           "raycast"
           "meetingbar"
-          "amazon-q"
           "lookaway"
+          "amazon-q"
+          "karabiner-elements"
         ];
         masApps ={
           "WhatsApp" = 310633997;
           "Microsoft Excel" = 462058435;
           "Microsoft PowerPoint" = 462062816;
           "Microsoft Word" = 462054704;
+          "Microsoft Outlook" = 985367838;
+          "Hidden Bar" = 1452453066;
         };
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
@@ -87,6 +98,9 @@
           "/Applications/Obsidian.app"
           "/System/Applications/Utilities/Terminal.app"
           "/Applications/WhatsApp.app"
+          ];
+          persistent-others = [
+          "${home}/Downloads"
           ];
         };
         finder = {
@@ -117,7 +131,14 @@
           ShutDownDisabled = true;
           ShutDownDisabledWhileLoggedIn = true;
         };
+        screencapture = {
+          location = "${home}/Desktop";
+          type = "png";
+        };
       };
+
+      # Enable watchIdAuth for sudo
+      security.pam.services.sudo_local.watchIdAuth = true;
 
       #Zsh config
       programs.zsh = {
@@ -135,8 +156,8 @@
       # Networking
       networking.wakeOnLan.enable = true;
 
-      # Auto upgrade nix package and the deamon service
-      services.nix-daemon.enable = true;
+      # System primary user.
+      system.primaryUser = user;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -169,22 +190,25 @@
 
       programs.git = {
         enable = true;
-        userName = "Nicolás Carvajal";
-        userEmail = "n.carvajalc@uniandes.edu.co";
+        userName = name;
+        userEmail = email;
+        extraConfig = {
+          init.defaultBranch = "main";
+        };
       };
 
       programs.zsh = {
         enable = true;
 
         history = {
-          path = "/Users/nicolascarvajalchaves/.zsh_history";
+          path = "${home}/.zsh_history";
           size = 100000;
           save = 100000;
           extended = true;
           share = true;
         };
 
-        initExtra = ''
+        initContent = ''
           export HISTTIMEFORMAT="[%F %T] "
           setopt HIST_FIND_NO_DUPS
           setopt HIST_IGNORE_ALL_DUPS
@@ -196,12 +220,13 @@
           source $(brew --prefix nvm)/nvm.sh
         '';
       };
+      
     };
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Mac-mini-VAE
-    darwinConfigurations."Mac-mini-VAE" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#mac-mini
+    darwinConfigurations."mac-mini" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration
         mac-app-util.darwinModules.default
@@ -211,17 +236,17 @@
             # For Apple Silicon
             enableRosetta = true;
             # User owner of homebrew packages
-            user = "nicolascarvajalchaves";
+            user = user;
           };
         }
         home-manager.darwinModules.home-manager {
-          users.users.nicolascarvajalchaves = {
-            home = "/Users/nicolascarvajalchaves";
+          users.users.${user} = {
+            home = home;
           };
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.nicolascarvajalchaves = homeconfig;
+            users.${user} = homeconfig;
           };
         }
       ];
