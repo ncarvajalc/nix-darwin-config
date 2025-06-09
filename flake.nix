@@ -56,6 +56,7 @@
           "zoom"
           "slack"
           "virtualbox"
+          "claude"
           # Fonts
           "font-montserrat"
           # Utilities
