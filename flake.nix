@@ -86,7 +86,7 @@
           tilesize = 60;
 
           persistent-apps = [
-          "/System/Applications/Mail.app"
+          "/Applications/Microsoft Outlook.app"
           "/Applications/Arc.app"
           "/Applications/Visual Studio Code.app"
           "/Applications/Cursor.app"
