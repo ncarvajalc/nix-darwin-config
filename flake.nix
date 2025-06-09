@@ -61,6 +61,7 @@
           "maccy"
           "alt-tab"
           "raycast"
+          "amazon-q"
         ];
         masApps ={
           "WhatsApp" = 310633997;
@@ -204,6 +205,7 @@
           source $(brew --prefix nvm)/nvm.sh
         '';
       };
+      
     };
   in
   {
