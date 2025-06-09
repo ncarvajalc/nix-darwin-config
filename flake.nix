@@ -126,6 +126,10 @@
           ShutDownDisabled = true;
           ShutDownDisabledWhileLoggedIn = true;
         };
+        screencapture = {
+          location = "${home}/Desktop";
+          type = "png";
+        };
       };
 
       # Enable watchIdAuth for sudo
