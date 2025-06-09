@@ -28,6 +28,9 @@
         enable = true;
         brews = [
           "mas"
+          "pyenv"
+          "libpq"
+          "nvm"
         ];
         casks = [
           # Desktop Apps
@@ -47,6 +50,9 @@
           "maccy"
           "alt-tab"
           "raycast"
+          "meetingbar"
+          "amazon-q"
+          "lookaway"
         ];
         masApps ={
           "WhatsApp" = 310633997;
@@ -65,7 +71,7 @@
           tilesize = 60;
 
           persistent-apps = [
-          "/System/Applications/Mail.app"
+          "/Applications/Microsoft Outlook.app"
           "/Applications/Arc.app"
           "/Applications/Visual Studio Code.app"
           "/Applications/Cursor.app"
@@ -162,7 +168,7 @@
         enable = true;
 
         history = {
-          path = "/Users/nicolascarvajal/.zsh_history";
+          path = "/Users/nicolascarvajalchaves/.zsh_history";
           size = 100000;
           save = 100000;
           extended = true;
@@ -173,14 +179,18 @@
           export HISTTIMEFORMAT="[%F %T] "
           setopt HIST_FIND_NO_DUPS
           setopt HIST_IGNORE_ALL_DUPS
+          export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+          [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
         '';
       };
     };
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Mac-mini-de-Nicolas
-    darwinConfigurations."Mac-mini-de-Nicolas" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#Mac-mini-VAE
+    darwinConfigurations."Mac-mini-VAE" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration
         mac-app-util.darwinModules.default
@@ -190,17 +200,17 @@
             # For Apple Silicon
             enableRosetta = true;
             # User owner of homebrew packages
-            user = "nicolascarvajal";
+            user = "nicolascarvajalchaves";
           };
         }
         home-manager.darwinModules.home-manager {
-          users.users.nicolascarvajal = {
-            home = "/Users/nicolascarvajal";
+          users.users.nicolascarvajalchaves = {
+            home = "/Users/nicolascarvajalchaves";
           };
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.nicolascarvajal = homeconfig;
+            users.nicolascarvajalchaves = homeconfig;
           };
         }
       ];
