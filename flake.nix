@@ -69,6 +69,7 @@
           "Microsoft Excel" = 462058435;
           "Microsoft PowerPoint" = 462062816;
           "Microsoft Word" = 462054704;
+          "Microsoft Outlook" = 985367838;
           "Hidden Bar" = 1452453066;
         };
         onActivation.cleanup = "zap";
