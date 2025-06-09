@@ -190,6 +190,9 @@
         enable = true;
         userName = name;
         userEmail = email;
+        extraConfig = {
+          init.defaultBranch = "main";
+        };
       };
 
       programs.zsh = {
