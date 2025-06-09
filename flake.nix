@@ -37,6 +37,7 @@
           "libpq"
           "nvm"
           "pandoc"
+          "ffmpeg"
         ];
         casks = [
           # Desktop Apps
