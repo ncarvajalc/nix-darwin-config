@@ -1,6 +1,6 @@
 {
   description = "Example nix-darwin system flake";
-
+  
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
@@ -15,6 +15,11 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-homebrew }:
   let
+    user = "nicolascarvajal"; # Change this to your username
+    email = "n.carvajalc@uniandes.edu.co"; # Change this to your email
+    name = "Nicolás Carvajal"; # Change this to your name
+    home = "/Users/${user}"; # Change this to your home directory
+    
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
@@ -86,6 +91,9 @@
           "/System/Applications/Utilities/Terminal.app"
           "/Applications/WhatsApp.app"
           ];
+          persistent-others = [
+          "${home}/Downloads"
+          ];
         };
         finder = {
           AppleShowAllExtensions = true;
@@ -137,7 +145,7 @@
       networking.wakeOnLan.enable = true;
 
       # System primary user.
-      system.primaryUser = "nicolascarvajal";
+      system.primaryUser = user;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -170,15 +178,15 @@
 
       programs.git = {
         enable = true;
-        userName = "Nicolás Carvajal";
-        userEmail = "n.carvajalc@uniandes.edu.co";
+        userName = name;
+        userEmail = email;
       };
 
       programs.zsh = {
         enable = true;
 
         history = {
-          path = "/Users/nicolascarvajal/.zsh_history";
+          path = "${home}/.zsh_history";
           size = 100000;
           save = 100000;
           extended = true;
@@ -211,17 +219,17 @@
             # For Apple Silicon
             enableRosetta = true;
             # User owner of homebrew packages
-            user = "nicolascarvajal";
+            user = user;
           };
         }
         home-manager.darwinModules.home-manager {
-          users.users.nicolascarvajal = {
-            home = "/Users/nicolascarvajal";
+          users.users.${user} = {
+            home = home;
           };
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.nicolascarvajal = homeconfig;
+            users.${user} = homeconfig;
           };
         }
       ];
