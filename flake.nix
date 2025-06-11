@@ -39,6 +39,7 @@
           "pandoc"
           "ffmpeg"
           "openjdk@11"
+          "tokei"
         ];
         casks = [
           # Desktop Apps
