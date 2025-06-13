@@ -78,6 +78,7 @@
           "Microsoft Word" = 462054704;
           "Microsoft Outlook" = 985367838;
           "Hidden Bar" = 1452453066;
+          "Remote Desktop" = 1295203466;
         };
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
