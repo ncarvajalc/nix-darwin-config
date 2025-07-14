@@ -31,6 +31,9 @@
       
       homebrew = {
         enable = true;
+        taps = [
+          "hashicorp/tap"
+        ];
         brews = [
           "mas"
           "pyenv"
@@ -40,6 +43,9 @@
           "ffmpeg"
           "openjdk@11"
           "tokei"
+          "hashicorp/tap/terraform"
+          "awscli"
+          "maven"
         ];
         casks = [
           # Desktop Apps
