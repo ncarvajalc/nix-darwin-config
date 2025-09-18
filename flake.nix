@@ -15,7 +15,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-homebrew }:
   let
-    user = "nicolascarvajal"; # Change this to your username
+    user = "nicolascarvajalchaves"; # Change this to your username
     email = "n.carvajalc@uniandes.edu.co"; # Change this to your email
     name = "Nicolás Carvajal"; # Change this to your name
     home = "/Users/${user}"; # Change this to your home directory
@@ -46,6 +46,7 @@
           "hashicorp/tap/terraform"
           "awscli"
           "maven"
+          "gh"
         ];
         casks = [
           # Desktop Apps
