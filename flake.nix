@@ -61,6 +61,7 @@
           "claude"
           "postman"
           "microsoft-azure-storage-explorer"
+          "firefox"
           # Fonts
           "font-montserrat"
           # Utilities
