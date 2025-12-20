@@ -202,9 +202,9 @@
 
       programs.git = {
         enable = true;
-        userName = name;
-        userEmail = email;
-        extraConfig = {
+        settings = {
+          user.email = email;
+          user.name = name;
           init.defaultBranch = "main";
           pull.rebase = true;
         };
