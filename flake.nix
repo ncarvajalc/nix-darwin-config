@@ -5,7 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.cl-nix-lite.url = "github:r4v3n6101/cl-nix-lite/url-fix";
+    };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -15,7 +18,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-homebrew }:
   let
-    user = "nicolascarvajalchaves"; # Change this to your username
+    user = "nicolascarvajal"; # Change this to your username
     email = "n.carvajalc@uniandes.edu.co"; # Change this to your email
     name = "Nicolás Carvajal"; # Change this to your name
     home = "/Users/${user}"; # Change this to your home directory
@@ -27,6 +30,7 @@
         [ pkgs.vim
           pkgs.mkalias
           pkgs.fzf
+          pkgs.nixfmt-rfc-style
         ];
       
       homebrew = {
@@ -62,6 +66,8 @@
           "postman"
           "microsoft-azure-storage-explorer"
           "firefox"
+          "spyder"
+          "claude-code"
           # Fonts
           "font-montserrat"
           # Utilities
@@ -200,6 +206,7 @@
         userEmail = email;
         extraConfig = {
           init.defaultBranch = "main";
+          pull.rebase = true;
         };
       };
 
@@ -232,7 +239,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#mac-mini
-    darwinConfigurations."mac-mini" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."MBP-Nico" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration
         mac-app-util.darwinModules.default
@@ -243,6 +250,7 @@
             enableRosetta = true;
             # User owner of homebrew packages
             user = user;
+            autoMigrate = true;
           };
         }
         home-manager.darwinModules.home-manager {
