@@ -45,6 +45,7 @@
             pkgs.gh
             pkgs.tree
             pkgs.uv
+            pkgs.zoxide
           ];
 
           homebrew = {
@@ -259,6 +260,15 @@
             enable = true;
             enableBashIntegration = true;
             enableZshIntegration = true;
+          };
+
+          # Zoxide config
+          programs.zoxide = {
+            enable = true;
+            enableZshIntegration = true;
+            options = [
+              "--cmd cd"
+            ];
           };
 
         };
