@@ -144,6 +144,7 @@
               KeyRepeat = 2;
               NSAutomaticQuoteSubstitutionEnabled = false;
               "com.apple.sound.beep.feedback" = 1;
+              AppleKeyboardUIMode = 2;
             };
             WindowManager = {
               EnableTiledWindowMargins = false;
