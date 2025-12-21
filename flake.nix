@@ -42,6 +42,9 @@
             pkgs.docker
             pkgs.fzf
             pkgs.nixfmt-rfc-style
+            pkgs.gh
+            pkgs.tree
+            pkgs.uv
           ];
 
           homebrew = {
@@ -134,6 +137,7 @@
               _FXSortFoldersFirstOnDesktop = true;
             };
             NSGlobalDomain = {
+              AppleShowAllExtensions = true;
               KeyRepeat = 2;
               NSAutomaticQuoteSubstitutionEnabled = false;
               "com.apple.sound.beep.feedback" = 1;
@@ -214,10 +218,16 @@
           programs.git = {
             enable = true;
             settings = {
-              user.email = email;
-              user.name = name;
-              init.defaultBranch = "main";
-              pull.rebase = true;
+              user = {
+                email = email;
+                name = name;
+              };
+              init = {
+                defaultBranch = "main";
+              };
+              pull = {
+                rebase = true;
+              };
             };
           };
 
@@ -243,6 +253,12 @@
               eval "$(pyenv init - zsh)"
               source $(brew --prefix nvm)/nvm.sh
             '';
+          };
+
+          programs.fzf = {
+            enable = true;
+            enableBashIntegration = true;
+            enableZshIntegration = true;
           };
 
         };
