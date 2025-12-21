@@ -1,5 +1,7 @@
-# Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
-
+"$schema" = "https://starship.rs/config-schema.json"
 # Inserts a blank line between shell prompts
-add_newline = false
+add_newline = true
+# Custom character for the prompt
+[character]
+success_symbol = '[>](bold blue)'
+error_symbol = '[>](bold red)'

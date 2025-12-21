@@ -93,6 +93,7 @@
               "lookaway"
               "kiro-cli"
               "karabiner-elements"
+              "ghostty"
             ];
             masApps = {
               "WhatsApp" = 310633997;
@@ -122,7 +123,7 @@
                 "/Applications/Visual Studio Code.app"
                 "/Applications/Cursor.app"
                 "/Applications/Obsidian.app"
-                "/System/Applications/Utilities/Terminal.app"
+                "/Applications/Ghostty.app"
                 "/Applications/WhatsApp.app"
               ];
               persistent-others = [
@@ -277,6 +278,11 @@
             enable = true;
             enableZshIntegration = true;
             # settings = pkgs.lib.importTOML ./starship/starship.toml;
+          };
+
+          programs.ghostty = {
+            enable = true;
+            settings = import ./ghostty/ghostty-settings.nix;
           };
 
         };
