@@ -3,3 +3,19 @@ font-size = 12
 background-blur-radius = 20
 mouse-hide-while-typing = true
 window-decoration = true
+
+window-padding-x = 6
+window-padding-y = 6
+window-padding-balance = true
+
+macos-option-as-alt = true
+macos-titlebar-style = native
+macos-icon = custom-style
+macos-icon-ghost-color = white
+macos-icon-screen-color = black
+
+clipboard-paste-protection = false
+
+mouse-hide-while-typing = true
+
+shell-integration = zsh

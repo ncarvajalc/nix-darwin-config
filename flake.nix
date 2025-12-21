@@ -280,6 +280,7 @@
             # settings = pkgs.lib.importTOML ./starship/starship.toml;
           };
 
+          # Ghostty config
           xdg.enable = true;
           xdg.configFile."ghostty/config".source = ./ghostty/config;
 
