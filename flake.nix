@@ -167,6 +167,8 @@
 
           # Enable watchIdAuth for sudo
           security.pam.services.sudo_local.watchIdAuth = true;
+          # Enable touchIdAuth for sudo
+          security.pam.services.sudo_local.touchIdAuth = true;
 
           #Zsh config
           programs.zsh = {
