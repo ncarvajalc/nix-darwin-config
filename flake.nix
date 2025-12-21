@@ -280,10 +280,8 @@
             # settings = pkgs.lib.importTOML ./starship/starship.toml;
           };
 
-          programs.ghostty = {
-            enable = true;
-            settings = import ./ghostty/ghostty-settings.nix;
-          };
+          xdg.enable = true;
+          xdg.configFile."ghostty/config".source = ./ghostty/config;
 
         };
     in
