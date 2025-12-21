@@ -46,6 +46,7 @@
             pkgs.tree
             pkgs.uv
             pkgs.zoxide
+            pkgs.starship
           ];
 
           homebrew = {
@@ -269,6 +270,13 @@
             options = [
               "--cmd cd"
             ];
+          };
+
+          # Starship config
+          programs.starship = {
+            enable = true;
+            enableZshIntegration = true;
+            # settings = pkgs.lib.importTOML ./starship/starship.toml;
           };
 
         };
