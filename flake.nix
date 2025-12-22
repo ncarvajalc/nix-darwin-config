@@ -291,6 +291,9 @@
     in
     {
       # Build darwin flake using:
+      # When is the first time you set up nix-darwin on this machine, run:
+      # sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .
+      # After that, you can use the shorter command:
       # $ sudo darwin-rebuild switch --flake .
       darwinConfigurations."MBP-Nico" = nix-darwin.lib.darwinSystem {
         modules = [
