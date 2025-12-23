@@ -338,7 +338,7 @@
 
               userSettings = {
                 # Visualization
-                "terminal.integrated.fontFamily" = "JetBrains Mono Nerd Font";
+                "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font";
                 "workbench.iconTheme" = "material-icon-theme";
                 "workbench.colorTheme" = "Catppuccin Mocha";
                 # Preferences
