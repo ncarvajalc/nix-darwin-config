@@ -288,7 +288,7 @@
           programs.starship = {
             enable = true;
             enableZshIntegration = true;
-            # settings = pkgs.lib.importTOML ./starship/starship.toml;
+            settings = pkgs.lib.importTOML ./starship/starship.toml;
           };
 
           # Ghostty config
@@ -298,9 +298,6 @@
           # VSCode config
           programs.vscode = {
             enable = true;
-
-            mutableExtensionsDir = true;
-
             profiles.default = {
               extensions = with pkgs.vscode-marketplace; [
                 adpyke.codesnap
