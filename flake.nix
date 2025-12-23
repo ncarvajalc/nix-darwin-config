@@ -84,6 +84,7 @@
               "claude-code"
               # Fonts
               "font-montserrat"
+              "font-jetbrains-mono-nerd-font"
               # Utilities
               "rectangle"
               "maccy"
@@ -286,6 +287,60 @@
           # Ghostty config
           xdg.enable = true;
           xdg.configFile."ghostty/config".source = ./ghostty/config;
+
+          # VSCode config
+          programs.vscode = {
+            enable = true;
+
+            profiles.default = {
+              extensions = with pkgs.vscode-extensions; [
+                adpyke.codesnap
+                alexcvzz.vscode-sqlite
+                anthropic.claude-code
+                catppuccin.catppuccin-vsc
+                eamodio.gitlens
+                esbenp.prettier-vscode
+                formulahendry.auto-rename-tag
+                github.vscode-pull-request-github
+                grapecity.gc-excelviewer
+                gruntfuggly.todo-tree
+                janisdd.vscode-edit-csv
+                jnoortheen.nix-ide
+                jock.svg
+                mechatroner.rainbow-csv
+                meganrogge.template-string-converter
+                mikestead.dotenv
+                ms-ceintl.vscode-language-pack-es
+                ms-vsliveshare.vsliveshare
+                ms-vsliveshare.vsliveshare-pack
+                mutantdino.resourcemonitor
+                mylesmurphy.prettify-ts
+                naumovs.color-highlight
+                openai.openai-chatgpt-adhoc
+                pkief.material-icon-theme
+                planbcoding.vscode-react-refactor
+                qwtel.sqlite-viewer
+                redhat.vscode-xml
+                ritwickdey.liveserver
+                shd101wyy.markdown-preview-enhanced
+                steoates.autoimport
+                streetsidesoftware.code-spell-checker
+                streetsidesoftware.code-spell-checker-spanish
+                tamasfe.even-better-toml
+                tomoki1207.pdf
+                wayou.vscode-todo-highlight
+                yoavbls.pretty-ts-errors
+              ];
+
+              userSettings = {
+                "terminal.integrated.fontFamily" = "JetBrains Mono Nerd Font";
+                "workbench.iconTheme" = "material-icon-theme";
+                "workbench.colorTheme" = "Catppuccin Mocha";
+                "editor.formatOnSave" = true;
+
+              };
+            };
+          };
 
         };
     in
