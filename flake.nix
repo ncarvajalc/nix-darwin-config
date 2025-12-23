@@ -84,6 +84,7 @@
               "firefox"
               "spyder"
               "claude-code"
+              "codex"
               # Fonts
               "font-montserrat"
               "font-jetbrains-mono-nerd-font"
