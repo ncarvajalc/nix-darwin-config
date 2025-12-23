@@ -14,6 +14,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs =
@@ -24,6 +25,7 @@
       home-manager,
       mac-app-util,
       nix-homebrew,
+      nix-vscode-extensions,
     }:
     let
       user = "nicolascarvajal"; # Change this to your username
@@ -209,6 +211,11 @@
 
           # Allow unfree packages instalation
           nixpkgs.config.allowUnfree = true;
+
+          # Add overlays for VSCode marketplace extensions
+          nixpkgs.overlays = [
+            nix-vscode-extensions.overlays.default
+          ];
         };
 
       homeconfig =
@@ -292,8 +299,10 @@
           programs.vscode = {
             enable = true;
 
+            mutableExtensionsDir = true;
+
             profiles.default = {
-              extensions = with pkgs.vscode-extensions; [
+              extensions = with pkgs.vscode-marketplace; [
                 adpyke.codesnap
                 alexcvzz.vscode-sqlite
                 anthropic.claude-code
@@ -312,11 +321,9 @@
                 mikestead.dotenv
                 ms-ceintl.vscode-language-pack-es
                 ms-vsliveshare.vsliveshare
-                ms-vsliveshare.vsliveshare-pack
                 mutantdino.resourcemonitor
                 mylesmurphy.prettify-ts
                 naumovs.color-highlight
-                openai.openai-chatgpt-adhoc
                 pkief.material-icon-theme
                 planbcoding.vscode-react-refactor
                 qwtel.sqlite-viewer
@@ -333,11 +340,18 @@
               ];
 
               userSettings = {
+                # Visualization
                 "terminal.integrated.fontFamily" = "JetBrains Mono Nerd Font";
                 "workbench.iconTheme" = "material-icon-theme";
                 "workbench.colorTheme" = "Catppuccin Mocha";
+                # Preferences
                 "editor.formatOnSave" = true;
-
+                "terminal.integrated.scrollback" = 1000000000;
+                "editor.unicodeHighlight.invisibleCharacters" = true;
+                "editor.accessibilitySupport" = "off";
+                # Git config
+                "git.autofetch" = true;
+                "git.openRepositoryInParentFolders" = "always";
               };
             };
           };
