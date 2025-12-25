@@ -338,6 +338,13 @@
                 yoavbls.pretty-ts-errors
               ];
 
+              keybindings = [
+                {
+                  key = "ctrl+shift+[BracketLeft]";
+                  command = "workbench.action.terminal.new";
+                }
+              ];
+
               userSettings = {
                 # Visualization
                 "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font";
@@ -348,6 +355,7 @@
                 "terminal.integrated.scrollback" = 1000000000;
                 "editor.unicodeHighlight.invisibleCharacters" = true;
                 "editor.accessibilitySupport" = "off";
+                "window.newWindowProfile" = "Default";
                 # Git config
                 "git.autofetch" = true;
                 "git.openRepositoryInParentFolders" = "always";
