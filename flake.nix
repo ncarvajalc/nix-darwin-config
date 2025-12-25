@@ -62,6 +62,7 @@
               "ffmpeg"
               "openjdk@11"
               "tokei"
+              "corkscrew"
             ];
             casks = [
               # Desktop Apps
