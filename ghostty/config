@@ -10,7 +10,7 @@ window-padding-x = 6
 window-padding-y = 6
 window-padding-balance = true
 
-macos-option-as-alt = true
+macos-option-as-alt = false
 macos-titlebar-style = native
 macos-icon = custom-style
 macos-icon-ghost-color = white
