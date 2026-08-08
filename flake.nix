@@ -5,10 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    mac-app-util = {
-      url = "github:hraban/mac-app-util";
-      inputs.cl-nix-lite.url = "github:r4v3n6101/cl-nix-lite/url-fix";
-    };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -23,7 +19,6 @@
       nix-darwin,
       nixpkgs,
       home-manager,
-      mac-app-util,
       nix-homebrew,
       nix-vscode-extensions,
     }:
@@ -374,7 +369,6 @@
       darwinConfigurations."MBP-Nico" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-          mac-app-util.darwinModules.default
           nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {
