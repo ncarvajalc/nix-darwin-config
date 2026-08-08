@@ -121,7 +121,6 @@
                 "/Applications/Microsoft Outlook.app"
                 "/Applications/Arc.app"
                 "/Applications/Visual Studio Code.app"
-                "/Applications/Cursor.app"
                 "/Applications/Obsidian.app"
                 "/Applications/Ghostty.app"
                 "/Applications/WhatsApp.app"
