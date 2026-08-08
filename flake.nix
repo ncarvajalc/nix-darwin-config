@@ -38,7 +38,7 @@
             pkgs.mkalias
             pkgs.docker
             pkgs.fzf
-            pkgs.nixfmt-rfc-style
+            pkgs.nixfmt
             pkgs.gh
             pkgs.tree
             pkgs.uv
