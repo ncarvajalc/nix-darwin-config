@@ -215,7 +215,7 @@
         };
 
       homeconfig =
-        { pkgs, ... }:
+        { pkgs, config, ... }:
         {
           # this is internal compatibility configuration
           # for home-manager, don't change this!
@@ -243,6 +243,7 @@
 
           programs.zsh = {
             enable = true;
+            dotDir = config.home.homeDirectory;
 
             history = {
               path = "${home}/.zsh_history";
@@ -365,7 +366,7 @@
       # sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .
       # After that, you can use the shorter command:
       # $ sudo darwin-rebuild switch --flake .
-      darwinConfigurations."MBP-Nico" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."Mac-mini-de-Nicolas" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
           nix-homebrew.darwinModules.nix-homebrew
